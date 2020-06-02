@@ -11,9 +11,21 @@ class mGame1 extends Phaser.Scene {
 
 	create() {
 		//Timer
-			let gameOptions = { initialTime: 650 }
+			let gameOptions = { initialTime: 600 }
 			this.timeLeft = gameOptions.initialTime;
 	        let timebar = this.add.sprite(0, 0, "timebar").setOrigin(0,0);
+	        this.tweens.addCounter({
+		        from: 255,
+		        to: 255,
+		        duration: 5000,
+		        onUpdate: function (tween)
+		        {
+		            var value = Math.floor(tween.getValue());
+
+		            timebar.setTint(Phaser.Display.Color.GetColor(value, value, value));
+		        }
+		    });
+
 	        this.energyMask = this.add.sprite(timebar.x, timebar.y, "timebar").setOrigin(0,0);
 
 	        this.energyMask.visible = false;
@@ -27,18 +39,26 @@ class mGame1 extends Phaser.Scene {
 	                let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
 	                this.energyMask.x -= stepWidth;
 	                /*if(this.timeLeft == 0){
-	                    this.scene.start("PlayGame")
+	                    this.scene.start("Fails")
 	                }*/
 	            },
 	            callbackScope: this,
 	            loop: true
 	        });
 
-	    this.bar = this.add.sprite(30, 150, "bar").setOrigin(0,0);
-	    this.barindicatorX = 30;
-	    this.barindicatorY = 650;
 
-	    this.barindicator = this.add.sprite(this.barindicatorX,this.barindicatorY, "barindicator").setOrigin(0,0);
+
+	    this.bar = this.add.sprite(30, 150, "bar").setOrigin(0,0).setScale();
+	    this.barindicatorX = 30;
+	    this.barindicatorY = 600;
+
+	    if(this.gameTimer.paused == false)
+	    {
+	    	this.input.on('pointerdown', function (pointer, barindicator)
+		    {	
+		    	this.barindicatorY -= 10;
+		    }, this);
+	    }
 	   	
 	    
 		
@@ -47,10 +67,13 @@ class mGame1 extends Phaser.Scene {
 	}
 
 	update() {
-		this.input.on('pointerdown', function (pointer, barindicator)
-	    {	
-	    	this.barindicatorY -= 10;
-	    	console.log("INPUT");
-	    }, this);
+		this.barindicator = this.add.sprite(this.barindicatorX,this.barindicatorY, "barindicator").setOrigin(0,0);
+
+		if(this.barindicatorY <= 150)
+		{
+			this.gameTimer.paused = true;
+			//this.scene.start("Win");
+		}
+		
 	}
 }
