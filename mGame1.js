@@ -3,6 +3,12 @@ class mGame1 extends Phaser.Scene {
         super("game1");
     }
 
+    init(data)
+    {
+    	this.score = data.score;
+	    this.nVie = data.nVie;
+    }
+
 	preload() {
         this.load.image("timebar", "Proto/timer.png");
         this.load.image("bar", "Proto/bar.png");
@@ -14,17 +20,6 @@ class mGame1 extends Phaser.Scene {
 			let gameOptions = { initialTime: 600 }
 			this.timeLeft = gameOptions.initialTime;
 	        let timebar = this.add.sprite(0, 0, "timebar").setOrigin(0,0);
-	        this.tweens.addCounter({
-		        from: 255,
-		        to: 255,
-		        duration: 5000,
-		        onUpdate: function (tween)
-		        {
-		            var value = Math.floor(tween.getValue());
-
-		            timebar.setTint(Phaser.Display.Color.GetColor(value, value, value));
-		        }
-		    });
 
 	        this.energyMask = this.add.sprite(timebar.x, timebar.y, "timebar").setOrigin(0,0);
 
@@ -38,15 +33,16 @@ class mGame1 extends Phaser.Scene {
 	                this.timeLeft --;
 	                let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
 	                this.energyMask.x -= stepWidth;
-	                /*if(this.timeLeft == 0){
-	                    this.scene.start("Fails")
-	                }*/
+	                if(this.timeLeft == 0){
+	                	this.nVie--;
+	                	console.log(this.nVie);
+	                    this.scene.start("Fails", {nVie: this.nombreVie, score: this.score})
+	                }
 	            },
 	            callbackScope: this,
 	            loop: true
 	        });
-
-
+	        this.gameTimer.paused = false;
 
 	    this.bar = this.add.sprite(30, 150, "bar").setOrigin(0,0).setScale();
 	    this.barindicatorX = 30;
@@ -59,7 +55,6 @@ class mGame1 extends Phaser.Scene {
 		    	this.barindicatorY -= 10;
 		    }, this);
 	    }
-	   	
 	    
 		
 
@@ -72,7 +67,9 @@ class mGame1 extends Phaser.Scene {
 		if(this.barindicatorY <= 150)
 		{
 			this.gameTimer.paused = true;
-			//this.scene.start("Win");
+			this.score++;
+			console.log(this.score);
+			this.scene.start("game2", {nVie: this.nVie, score: this.score});
 		}
 		
 	}

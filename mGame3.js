@@ -3,7 +3,14 @@ class mGame3 extends Phaser.Scene {
         super("game3");
     }
 
+    init(data)
+    {
+    	this.score = data.score;
+	    this.nVie = data.nVie;
+    }
+
 	preload() {
+		
 
 	}
 
