@@ -10,8 +10,10 @@ class mGame3 extends Phaser.Scene {
     }
 
 	preload() {
-		 this.load.image("timebar", "Proto/timer.png");
+		this.load.image("timebar", "Proto/timer.png");
         this.load.image("flies", "Proto/red.png");
+
+        this.load.image("tongue", "Proto/blue.png");
 
 	}
 
@@ -33,44 +35,48 @@ class mGame3 extends Phaser.Scene {
 	                this.timeLeft --;
 	                let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
 	                this.energyMask.x -= stepWidth;
+	                if(this.timeLeft == 0){
+	                	this.nVie--;
+	                	console.log(this.nVie);
+	                    this.scene.start("Fails", {nVie: this.nombreVie, score: this.score})
+	                }
 	            },
 	            callbackScope: this,
 	            loop: true
 	        });
 	        this.gameTimer.paused = false;
 
-		function Targets(sprite, x ,y, here)
-		{
-			this._target = here.matter.add.sprite(x,y,sprite);
-		}
+	function Targets(sprite, x ,y, here)
+    {
+        this._target = here.matter.add.image(x,y,sprite).setStatic(true);
 
-		this.targetA = new Targets("flies", 700, 250, this, {ignoreGravity: true});
-		let tween = this.tweens.add({
-		        targets: this.targetA,
-		        x: 1100,
-		        duration: 3000,
-		        ease: 'Power2',
-		        loop: 2
-		    });  
+    }
+	this.nTargets = 3;
+    this.targetA = new Targets("flies", 850, 550, this);
+    this.targetB = new Targets("flies", 1100, 200, this);
+    this.targetC = new Targets("flies", 1100, 550, this);
 
+    
+    
+    this.body1 = this.matter.add.image(250, 550, 'tongue'); 
+    this.body2 = this.matter.add.image(250, 550, 'tongue');
 
-		var image = this.add.image(100, 300, 'flies');
+    this.matter.add.spring(this.body1, this.body2, 1, 0.001);
 
-		this.matter.world.setBounds();
+    this.cat1 = this.matter.world.nextCategory();
 
-        this.body1 = this.matter.add.circle(250, 500, 30, { isStatic: true });
-   
-        this.body2 = this.matter.add.rectangle(150, 250, 30,30);
+    this.body1.setCollisionCategory(this.cat1);
 
-        this.matter.add.spring(this.body1, this.body2, 10, 0.001);
+    this.matter.world.on('collisionstart', function (event) {
+		event.pairs[0].bodyA.gameObject.destroy();
+    });
 
-	    this.matter.add.mouseSpring();
-
+	this.matter.add.mouseSpring();
 	    
-
 	}
 
 	update() {
+		
 
 	}
 }

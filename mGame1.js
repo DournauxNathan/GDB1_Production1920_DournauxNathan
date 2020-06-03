@@ -36,7 +36,7 @@ class mGame1 extends Phaser.Scene {
 	                if(this.timeLeft == 0){
 	                	this.nVie--;
 	                	console.log(this.nVie);
-	                    this.scene.start("Fails", {nVie: this.nombreVie, score: this.score})
+	                    this.scene.start("game2", {nVie: this.nombreVie, score: this.score})
 	                }
 	            },
 	            callbackScope: this,
@@ -55,10 +55,6 @@ class mGame1 extends Phaser.Scene {
 		    	this.barindicatorY -= 10;
 		    }, this);
 	    }
-	    
-		
-
-		
 	}
 
 	update() {
@@ -71,6 +67,7 @@ class mGame1 extends Phaser.Scene {
 			console.log(this.score);
 			this.scene.start("game2", {nVie: this.nVie, score: this.score});
 		}
-		
+	
+
 	}
 }

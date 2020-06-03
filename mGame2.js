@@ -34,6 +34,11 @@ class mGame2 extends Phaser.Scene {
 	                this.timeLeft --;
 	                let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
 	                this.energyMask.x -= stepWidth;
+	                if(this.timeLeft == 0){
+	                	this.score++;
+	                	console.log(this.score);
+	                    this.scene.start("game3", {nVie: this.nombreVie, score: this.score})
+	                }
 	            },
 	            callbackScope: this,
 	            loop: true

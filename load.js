@@ -21,13 +21,17 @@ class load extends Phaser.Scene {
 
 		function callChangeScene()
 		{
+			console.log(this.nVie);	
+			console.log(this.score);	
 			this.scene.start('game1', {nVie: this.nVie, score: this.score});
+
+
 		}
 		
 	}
 
 	update() {
-		console.log(this.nVie);	
+		
 
 	}
 }
