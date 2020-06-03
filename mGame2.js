@@ -12,6 +12,8 @@ class mGame2 extends Phaser.Scene {
 	preload() {
         this.load.image("timebar", "Proto/timer.png");
         this.load.image("ball", "Proto/blue.png");
+        this.load.image("platform", "Proto/platform.png");
+        this.load.image("trigger", "Proto/trigger.png");
 	}
 
 	create() {
@@ -28,42 +30,62 @@ class mGame2 extends Phaser.Scene {
 
 			this.gameTimer = this.time.addEvent({
 	            delay: 10,
-	            callback: function(){
+	            callback: function() {
 	                this.timeLeft --;
 	                let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
 	                this.energyMask.x -= stepWidth;
-	                if(this.timeLeft == 0){
-	                	this.nVie--;
-	                	console.log(this.nVie);
-	                    this.scene.start("Fails", {nVie: this.nombreVie, score: this.score})
-	                }
 	            },
 	            callbackScope: this,
 	            loop: true
 	        });
 	        this.gameTimer.paused = false;
 
-	   	
-	    this.balls = this.matter.add.image(400, 100, 'blue', null, { chamfer: 16 }).setBounce(0.9).setIgnoreGravity(true);
-	    this.balls.setBody({
-        type: 'circle',
-        radius: 48
-    	});
-	    this.balls = this.matter.add.mouseSpring({ length: 1, stiffness: 0.6 });
+	    function Balls(sprite, x, y, radius, fric, velX, AngVel, here)
+	    {
+	    	this._ball = here.matter.add.image(x, y, sprite)
+	    	.setCircle(radius)
+		    .setFriction(fric)
+		    .setVelocityX(velX)
+		    .setAngularVelocity(AngVel);
 
-	   	
+		    here.matter.add.mouseSpring();
+	    }
 
-	    this.platform =  this.matter.add.image(400, 550, 'timebar', null, { isStatic: true }).setAngle(45);
+	    function Platforms(sprite, x, y,state, angle, here)
+	    {
+	    	this._platform = here.matter.add.image(x,y,sprite, null, {isStatic: state}).setAngle(angle);
+	    }
 
-	    this
+	    function OnTrigger(sprite, x, y, state, here)
+  		{
+  			this._trigger = here.matter.add.image(x,y,sprite, null, {isStatic: state}).setVisible(false);
+  		}
+
+	    this.ballLeft = new Balls("ball", 150, 250, 50, 0, 1, 0, this);
+  		this.ballRight = new Balls("ball", 1000, 250, 50, 0, 1, 0, this);
+
+	    this.platformsLeft = new Platforms("platform", 250, 450, "true", 8, this);
+  		this.platformsRight = new Platforms("platform", 1000, 450, "true", -8, this);
+
+  		this.trigger = new OnTrigger("trigger", 640,700,"true", this);
+
+	    /*this.gameTimer.paused = true;
+    	this.nVie--;
+    	console.log(this.nVie);
+        this.scene.start("Fails", {nVie: this.nombreVie, score: this.score});
+
+        this.score++;
+        	console.log(this.score);
+            this.scene.start("Win", {nVie: this.nombreVie, score: this.score})
+        */
+
+		
 	    
-		
-
-		
 	}
 
 	update() {
-		
+
+
 		
 	}
 }
