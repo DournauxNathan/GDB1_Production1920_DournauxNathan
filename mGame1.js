@@ -35,8 +35,8 @@ class mGame1 extends Phaser.Scene {
 	                this.energyMask.x -= stepWidth;
 	                if(this.timeLeft == 0){
 	                	this.nVie--;
-	                	console.log(this.nVie);
-	                    this.scene.start("game2", {nVie: this.nombreVie, score: this.score})
+	                	console.log("Vie :" + this.nVie);
+	                    this.scene.start("game2", {nVie: this.nVie, score: this.score});
 	                }
 	            },
 	            callbackScope: this,
@@ -64,7 +64,7 @@ class mGame1 extends Phaser.Scene {
 		{
 			this.gameTimer.paused = true;
 			this.score++;
-			console.log(this.score);
+			console.log("Score :" + this.score);
 			this.scene.start("game2", {nVie: this.nVie, score: this.score});
 		}
 	
