@@ -40,60 +40,47 @@ class mGame2 extends Phaser.Scene {
 	        });
 	        this.gameTimer.paused = false;
 
-	    function Balls(sprite, x, y, radius, fric, velX, AngVel, here)
-	    {
-	    	this._ball = here.matter.add.image(x, y, sprite)
-	    	.setCircle(radius)
-		    .setFriction(fric)
-		    .setVelocityX(velX)
-		    .setAngularVelocity(AngVel);
-
-		    here.matter.add.mouseSpring();
-	    }
-
-	    Balls.prototype.Fall = function () 
-	    {
-	    	if(this._ball.y > 0)
-	    	{
-	    		console.log("Yay");
-	    	}
-	    }
-
 	    function Platforms(sprite, x, y,state, angle, here)
 	    {
-	    	this._platform = here.matter.add.image(x,y,sprite, null, {isStatic: state}).setAngle(angle);
+	    	this._platform = here.matter.add.image(x,y,sprite, null).setStatic(state).setAngle(angle);
 	    }
 
-	    function OnTrigger(sprite, x, y, state, here)
-  		{
-  			this._trigger = here.matter.add.image(x,y,sprite, null, {isStatic: state}).setVisible(false);
-  		}
+	    this.ballLeft = this.matter.add.image(150, 250, "ball")
+	    	.setCircle(50)
+		    .setFriction(0)
+		    .setVelocityX(1)
+		    .setAngularVelocity(0);
+		    
+  		this.ballRight = this.matter.add.image(1000, 250, "ball")
+	    	.setCircle(50)
+		    .setFriction(0)
+		    .setVelocityX(1)
+		    .setAngularVelocity(0);
 
-	    this.ballLeft = new Balls("ball", 150, 250, 50, 0, 1, 0, this);
-  		this.ballRight = new Balls("ball", 1000, 250, 50, 0, 1, 0, this);
+		this.matter.add.mouseSpring();
 
 	    this.platformsLeft = new Platforms("platform", 250, 450, "true", 8, this);
   		this.platformsRight = new Platforms("platform", 1000, 450, "true", -8, this);
-
-  		this.trigger = new OnTrigger("platform", 640,700,"true", this);
-
-	    /*this.gameTimer.paused = true;
-    	this.nVie--;
-    	console.log(this.nVie);
-        this.scene.start("Fails", {nVie: this.nombreVie, score: this.score});
-
-        this.score++;
-        	console.log(this.score);
-            this.scene.start("Win", {nVie: this.nombreVie, score: this.score})
-        */
-
-		
-	    
+  		this.platforms = new Platforms("platform", 640, 750, "true", 0, this);	    
 	}
 
 	update() {
 
+		if(this.ballLeft.y >= 650 || this.ballRight.y >= 650)
+		{
+			this.gameTimer.paused = true;
+	    	this.nVie--;
+	    	console.log("Vies : " + this.nVie);
+	        this.scene.start("game3", {nVie: this.nombreVie, score: this.score});
+		}
 
+		if(this.timeLeft == 0 /*&& this.ballLeft.y < 650 && this.ballRight.y < 650*/) 
+		{
+
+        	this.score++;
+        	console.log("Score :" + this.score);
+           	this.scene.start("game3", {nVie: this.nVie, score: this.score});
+        }
 		
 	}
 }
