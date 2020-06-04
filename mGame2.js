@@ -71,7 +71,7 @@ class mGame2 extends Phaser.Scene {
 			this.gameTimer.paused = true;
 	    	this.nVie--;
 	    	console.log("Vies : " + this.nVie);
-	        this.scene.start("Fails", {nVie: this.nombreVie, score: this.score});
+	        this.scene.start("game3", {nVie: this.nombreVie, score: this.score});
 		}
 
 		if(this.timeLeft == 0 /*&& this.ballLeft.y < 650 && this.ballRight.y < 650*/) 

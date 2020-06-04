@@ -94,7 +94,7 @@ class mGame3 extends Phaser.Scene {
 
 	    function collectTarget()
 	    {
-	    	this.targetA.destroy(true);
+	    	console.log("collected")
 	    }
 
   	    
