@@ -58,6 +58,7 @@ class mGame3 extends Phaser.Scene {
 
     
     
+<<<<<<< Updated upstream
     this.body1 = this.matter.add.image(250, 550, 'tongue'); 
     this.body2 = this.matter.add.image(250, 550, 'tongue');
 
@@ -73,6 +74,59 @@ class mGame3 extends Phaser.Scene {
 
 	this.matter.add.mouseSpring();
 	    
+=======
+	    this.nTargets = 3;
+	    this.speedTargets = 5000;
+	    this.targetA = this.matter.add.image(850,550,"flies", {label: "1"}).setStatic(true).setOnCollide(collectTarget);
+	    this.targetB = this.matter.add.image(1400,200,"flies", {label: "2"}).setStatic(true).setOnCollide(collectTarget);
+	    this.targetC = this.matter.add.image(1100,550,"flies", {label: "3"}).setStatic(true).setOnCollide(collectTarget);
+
+	    this.tweenA = this.tweens.add({
+	        targets: this.targetA,
+	        y: 200,
+	        duration: this.speedTargets,
+	        ease: 'Linear',
+	        loop: -1,
+	        yoyo: true
+	    });
+
+	    this.tweenB = this.tweens.add({
+	        targets: [ this.targetB ],
+	        x: 1100,
+	        duration: this.speedTargets,
+	        ease: 'Linear',
+	        loop: -1,
+	        yoyo: true
+	    });
+
+	    this.tweenC = this.tweens.add({
+	        targets: [ this.targetC ],
+	        x: 1400,
+	        duration: this.speedTargets,
+	        ease: 'Linear',
+	        loop: -1,
+	        yoyo: true
+	    });
+
+	    this.body1 = this.matter.add.sprite(250, 550,'tongue').setOnCollide(collectTarget); 
+	    this.matter.add.mouseSpring();
+	    this.body2 = this.matter.add.rectangle(250, 550, 30, 30, { isStatic: true });
+	    this.body3 = this.matter.add.rectangle(250, 650, -200, 800, { isStatic: true });
+	    this.body4 = this.matter.add.rectangle(250, 700, 500, 200, { isStatic: true });
+
+	    this.matter.add.spring(this.body1, this.body2, 100, 0.001);
+
+	   
+	    this.spring = this.matter.add.spring(this.body1, this.body2, 140, 0.001);
+
+
+	    function collectTarget()
+	    {
+	    	console.log("collected")
+	    }
+
+  	    
+>>>>>>> Stashed changes
 	}
 
 	update() {
