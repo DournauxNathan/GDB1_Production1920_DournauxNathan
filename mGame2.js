@@ -42,26 +42,47 @@ class mGame2 extends Phaser.Scene {
 
 	    function Platforms(sprite, x, y,state, angle, here)
 	    {
-	    	this._platform = here.matter.add.image(x,y,sprite, null).setStatic(state).setAngle(angle);
+	    	this._platform = here.add.image(x,y,sprite, null).setStatic(state).setAngle(angle);
 	    }
 
-	    this.ballLeft = this.matter.add.image(150, 250, "ball")
+	    this.ballLeft = this.physics.add.image(150, 250, "ball")
 	    	.setCircle(50)
 		    .setFriction(0)
 		    .setVelocityX(1)
 		    .setAngularVelocity(0);
 		    
-  		this.ballRight = this.matter.add.image(1000, 250, "ball")
+  		this.ballRight = this.physics.add.image(1000, 250, "ball")
 	    	.setCircle(50)
 		    .setFriction(0)
 		    .setVelocityX(1)
 		    .setAngularVelocity(0);
 
-		this.matter.add.mouseSpring();
+		this.physics.add.mouseSpring();
 
 	    this.platformsLeft = new Platforms("platform", 250, 450, "true", 8, this);
   		this.platformsRight = new Platforms("platform", 1000, 450, "true", -8, this);
   		this.platforms = new Platforms("platform", 640, 750, "true", 0, this);	    
+
+  		this.input.setDraggable(image);
+
+    this.input.on('dragstart', function (pointer, gameObject) {
+
+        gameObject.setTint(0xff0000);
+
+    });
+
+    this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+
+        gameObject.x = dragX;
+        gameObject.y = dragY;
+
+    });
+
+    this.input.on('dragend', function (pointer, gameObject) {
+
+        gameObject.clearTint();
+
+    });
 	}
 
 	update() {
@@ -79,7 +100,7 @@ class mGame2 extends Phaser.Scene {
 
         	this.score++;
         	console.log("Score :" + this.score);
-           	this.scene.start("game3", {nVie: this.nVie, score: this.score});
+           	this.scene.start("game4", {nVie: this.nVie, score: this.score});
         }
 		
 	}
