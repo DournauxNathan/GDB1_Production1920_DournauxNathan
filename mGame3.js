@@ -46,7 +46,6 @@ class mGame3 extends Phaser.Scene {
 	        });
 	        this.gameTimer.paused = false;
     
-    
 	    this.nTargets = 3;
 	    this.speedTargets = 5000;
 	    this.targetA = this.matter.add.image(850,550,"flies", {label: "1"}).setStatic(true).setOnCollide(collectTarget);
@@ -80,7 +79,7 @@ class mGame3 extends Phaser.Scene {
 	        yoyo: true
 	    });
 
-	    this.body1 = this.matter.add.sprite(250, 550,'tongue').setOnCollide(collectTarget); 
+	    
 	    this.matter.add.mouseSpring();
 	    this.body2 = this.matter.add.rectangle(250, 550, 30, 30, { isStatic: true });
 	    this.body3 = this.matter.add.rectangle(250, 650, -200, 800, { isStatic: true });
@@ -92,10 +91,12 @@ class mGame3 extends Phaser.Scene {
 	    this.spring = this.matter.add.spring(this.body1, this.body2, 140, 0.001);
 
 
-	    function collectTarget()
-	    {
-	    	console.log("collected")
-	    }
+	    this.collectTarget = function()
+        {
+            this.targetA.destroy();
+        }
+
+        this.body1 = this.matter.add.sprite(250, 550,'tongue').setOnCollideWith(this.targetA, this.collectTarget); 
 
   	    
 	}
