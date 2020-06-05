@@ -34,10 +34,17 @@ class mGame2 extends Phaser.Scene {
 	                this.timeLeft --;
 	                let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
 	                this.energyMask.x -= stepWidth;
+	                if(this.timeLeft == 0) {
+					{
+			        	this.score++;
+			        	console.log("Score :" + this.score);
+			           	this.scene.start("game4", {nVie: this.nVie, score: this.score});
+			        }
 	            },
 	            callbackScope: this,
 	            loop: true
-	        });
+	            
+	        },
 	        this.gameTimer.paused = false;
 
 	    function Platforms(sprite, x, y,state, angle, here)
@@ -45,44 +52,25 @@ class mGame2 extends Phaser.Scene {
 	    	this._platform = here.add.image(x,y,sprite, null).setStatic(state).setAngle(angle);
 	    }
 
-	    this.ballLeft = this.physics.add.image(150, 250, "ball")
+	    this.ballLeft = this.matter.add.image(150, 250, "ball")
 	    	.setCircle(50)
 		    .setFriction(0)
 		    .setVelocityX(1)
 		    .setAngularVelocity(0);
 		    
-  		this.ballRight = this.physics.add.image(1000, 250, "ball")
+  		this.ballRight = this.matter.add.image(1000, 250, "ball")
 	    	.setCircle(50)
 		    .setFriction(0)
 		    .setVelocityX(1)
 		    .setAngularVelocity(0);
 
-		this.physics.add.mouseSpring();
+		this.matter.add.mouseSpring();
 
 	    this.platformsLeft = new Platforms("platform", 250, 450, "true", 8, this);
   		this.platformsRight = new Platforms("platform", 1000, 450, "true", -8, this);
   		this.platforms = new Platforms("platform", 640, 750, "true", 0, this);	    
 
-  		this.input.setDraggable(image);
-
-    this.input.on('dragstart', function (pointer, gameObject) {
-
-        gameObject.setTint(0xff0000);
-
-    });
-
-    this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
-
-        gameObject.x = dragX;
-        gameObject.y = dragY;
-
-    });
-
-    this.input.on('dragend', function (pointer, gameObject) {
-
-        gameObject.clearTint();
-
-    });
+  		this.matter.add.mouseSpring();
 	}
 
 	update() {
@@ -95,13 +83,7 @@ class mGame2 extends Phaser.Scene {
 	        this.scene.start("game3", {nVie: this.nombreVie, score: this.score});
 		}
 
-		if(this.timeLeft == 0 /*&& this.ballLeft.y < 650 && this.ballRight.y < 650*/) 
-		{
-
-        	this.score++;
-        	console.log("Score :" + this.score);
-           	this.scene.start("game4", {nVie: this.nVie, score: this.score});
-        }
+		
 		
 	}
 }
