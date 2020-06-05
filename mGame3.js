@@ -48,9 +48,9 @@ class mGame3 extends Phaser.Scene {
     
 	    this.nTargets = 3;
 	    this.speedTargets = 5000;
-	    this.targetA = this.matter.add.image(850,550,"flies", {label: "1"}).setStatic(true).setOnCollide(collectTarget);
-	    this.targetB = this.matter.add.image(1400,200,"flies", {label: "2"}).setStatic(true).setOnCollide(collectTarget);
-	    this.targetC = this.matter.add.image(1100,550,"flies", {label: "3"}).setStatic(true).setOnCollide(collectTarget);
+	    this.targetA = this.matter.add.image(850,550,"flies", {label: "1"}).setStatic(true).setOnCollide(this.collectTarget);
+	    this.targetB = this.matter.add.image(1400,200,"flies", {label: "2"}).setStatic(true).setOnCollide(this.collectTarget);
+	    this.targetC = this.matter.add.image(1100,550,"flies", {label: "3"}).setStatic(true).setOnCollide(this.collectTarget);
 
 	    this.tweenA = this.tweens.add({
 	        targets: this.targetA,
@@ -80,23 +80,21 @@ class mGame3 extends Phaser.Scene {
 	    });
 
 	    
-	    this.matter.add.mouseSpring();
-	    this.body2 = this.matter.add.rectangle(250, 550, 30, 30, { isStatic: true });
-	    this.body3 = this.matter.add.rectangle(250, 650, -200, 800, { isStatic: true });
-	    this.body4 = this.matter.add.rectangle(250, 700, 500, 200, { isStatic: true });
 
-	    this.matter.add.spring(this.body1, this.body2, 100, 0.001);
-
-	   
-	    this.spring = this.matter.add.spring(this.body1, this.body2, 140, 0.001);
-
-
-	    this.collectTarget = function()
+	    this.collectTarget = function(targetA)
         {
-            this.targetA.destroy();
+            targetA.destroy();
         }
 
         this.body1 = this.matter.add.sprite(250, 550,'tongue').setOnCollideWith(this.targetA, this.collectTarget); 
+		this.matter.add.mouseSpring();
+		this.body2 = this.matter.add.rectangle(250, 550, 30, 30, { isStatic: true });
+	    this.body3 = this.matter.add.rectangle(250, 650, -200, 800, { isStatic: true });
+	    this.body4 = this.matter.add.rectangle(250, 700, 500, 200, { isStatic: true });
+        this.matter.add.spring(this.body1, this.body2, 100, 0.001);
+
+	   
+	    this.spring = this.matter.add.spring(this.body1, this.body2, 140, 0.001);
 
   	    
 	}
