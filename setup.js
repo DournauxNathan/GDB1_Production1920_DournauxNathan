@@ -5,11 +5,11 @@ var config = {
   physics: {
     default: 'matter',
       matter: {
-        gravity: { y: 0 },
+        gravity: { y: 1 },
         debug: true
       }
   },
-  scene: [load, mGame1, mGame2, Win, mGame3]
+  scene: [load, Transition, mGame1, mGame2, mGame3]
 };
 
 var game = new Phaser.Game(config);

@@ -7,6 +7,7 @@ class mGame1 extends Phaser.Scene {
     {
     	this.score = data.score;
 	    this.nVie = data.nVie;
+	    this.level = data.level;
     }
 
 	preload() {
@@ -33,11 +34,6 @@ class mGame1 extends Phaser.Scene {
 	                this.timeLeft --;
 	                let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
 	                this.energyMask.x -= stepWidth;
-	                if(this.timeLeft == 0){
-	                	this.nVie--;
-	                	console.log(this.nVie);
-	                    this.scene.start("Fails", {nVie: this.nombreVie, score: this.score})
-	                }
 	            },
 	            callbackScope: this,
 	            loop: true
@@ -55,22 +51,24 @@ class mGame1 extends Phaser.Scene {
 		    	this.barindicatorY -= 10;
 		    }, this);
 	    }
-	    
-		
-
-		
 	}
 
 	update() {
 		this.barindicator = this.add.sprite(this.barindicatorX,this.barindicatorY, "barindicator").setOrigin(0,0);
 
-		if(this.barindicatorY <= 150)
+		if(this.barindicatorY <= 150 && this.timeLeft != 0)
 		{
+			this.level++;
 			this.gameTimer.paused = true;
 			this.score++;
-			console.log(this.score);
-			this.scene.start("game2", {nVie: this.nVie, score: this.score});
+			this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level});
 		}
+
+		if(this.timeLeft == 0){
+			this.level++;
+        	this.nVie--;
+            this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level})
+        }
 		
 	}
 }
