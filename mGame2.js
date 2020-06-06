@@ -7,6 +7,7 @@ class mGame2 extends Phaser.Scene {
     {
     	this.score = data.score;
 	    this.nVie = data.nVie;
+	    this.level = data.level;
     }
 
 	preload() {
@@ -34,22 +35,21 @@ class mGame2 extends Phaser.Scene {
 	                this.timeLeft --;
 	                let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
 	                this.energyMask.x -= stepWidth;
-	                if(this.timeLeft == 0) {
-					{
-			        	this.score++;
-			        	console.log("Score :" + this.score);
-			           	this.scene.start("game4", {nVie: this.nVie, score: this.score});
-			        }
+	                if(this.timeLeft == 0){
+	                	this.level++;
+						this.gameTimer.paused = true;
+						this.score++;
+						this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level});
+	                }
 	            },
 	            callbackScope: this,
 	            loop: true
-	            
-	        },
+	        });
 	        this.gameTimer.paused = false;
 
 	    function Platforms(sprite, x, y,state, angle, here)
 	    {
-	    	this._platform = here.add.image(x,y,sprite, null).setStatic(state).setAngle(angle);
+	    	this._platform = here.matter.	add.image(x,y,sprite, null).setStatic(state).setAngle(angle);
 	    }
 
 	    this.ballLeft = this.matter.add.image(150, 250, "ball")
@@ -77,13 +77,10 @@ class mGame2 extends Phaser.Scene {
 
 		if(this.ballLeft.y >= 650 || this.ballRight.y >= 650)
 		{
-			this.gameTimer.paused = true;
-	    	this.nVie--;
-	    	console.log("Vies : " + this.nVie);
-	        this.scene.start("game3", {nVie: this.nombreVie, score: this.score});
+			this.level++;
+        	this.nVie--;
+            this.scene.start("issue", {nVie: this.nombreVie, score: this.score, level: this.level})
 		}
 
-		
-		
 	}
 }
