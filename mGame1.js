@@ -120,11 +120,13 @@ class mGame1 extends Phaser.Scene {
 		    	this.resumeButton.setVisible(true);
 				this.quitButton.setVisible(true);
 		    });
+		    
 		    this.resumeButton.on('pointerdown', () => {
 		    	this.gameTimer.paused = false;
 		    	this.resumeButton.setVisible(false);
 				this.quitButton.setVisible(false);
 		    });
+
 		    this.quitButton.on('pointerdown', () => {
 		    	this.gameTimer.paused = true;
 		    	this.time.delayedCall(3000, () => {
