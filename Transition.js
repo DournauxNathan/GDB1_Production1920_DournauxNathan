@@ -22,8 +22,6 @@ class Transition extends Phaser.Scene {
 		this.vie2 = this.add.image(640,400,'2vie').setVisible(true);
 		this.vie3 = this.add.image(740,400,'1vie').setVisible(true);
 
-
-
 		this.timedEvent = this.time.delayedCall(3000, callChangeScene, [], this);
 
 		function callChangeScene()
@@ -45,11 +43,14 @@ class Transition extends Phaser.Scene {
 		
 		if(this.nVie == 1)
 		{
+			this.vie3.setVisible(false);
 			this.vie2.setVisible(false);
 		}
 
 		if(this.nVie == 0)
 		{
+			this.vie3.setVisible(false);
+			this.vie2.setVisible(false);
 			this.vie1.setVisible(false);
 		}
 		
