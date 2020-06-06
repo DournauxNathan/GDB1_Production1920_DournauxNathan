@@ -134,7 +134,6 @@ class mGame1 extends Phaser.Scene {
 		    });  
     
 
-
 	}
 
 	update() {
