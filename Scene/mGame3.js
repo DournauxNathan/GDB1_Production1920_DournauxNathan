@@ -125,22 +125,7 @@ class mGame3 extends Phaser.Scene {
         }
 
         this.body1 = this.matter.add.sprite(250, 550,'tongue').setOnCollideWith(this.targetA, this.collectTargetA).setOnCollideWith(this.targetB, this.collectTargetB).setOnCollideWith(this.targetC, this.collectTargetC); 
-		this.player = this.matter.add.mouseSpring();
-
-        {
-        	targetB.destroy();
-        }
-
-        this.collectTargetC = function(targetC)
-        {
-            targetC.destroy(); 
-              
-        }
-
-       
-
-        this.body1 = this.matter.add.sprite(250, 550,'tongue').setOnCollideWith(this.targetA, this.collectTargetA).setOnCollideWith(this.targetB, this.collectTargetB).setOnCollideWith(this.targetC, this.collectTargetC); 
-
+        this.player = this.matter.add.mouseSpring();
 		this.body2 = this.matter.add.rectangle(250, 550, 30, 30, { isStatic: true });
 	    this.body3 = this.matter.add.rectangle(250, 650, -200, 800, { isStatic: true });
 	    this.body4 = this.matter.add.rectangle(250, 700, 500, 200, { isStatic: true });
