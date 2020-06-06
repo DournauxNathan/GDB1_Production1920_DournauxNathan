@@ -22,9 +22,9 @@ class Transition extends Phaser.Scene {
 		this.vie2 = this.add.image(640,400,'2vie').setVisible(true);
 		this.vie3 = this.add.image(740,400,'1vie').setVisible(true);
 
-		this.timedEvent = this.time.delayedCall(3000, callChangeScene, [], this);
+		this.timedEvent = this.time.delayedCall(3000, callGame, [], this);
 
-		function callChangeScene()
+		function callGame()
 		{
 			console.log("Vies :" + this.nVie);
 			console.log("Score :" + this.score);
