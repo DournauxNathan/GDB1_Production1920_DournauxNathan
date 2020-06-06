@@ -7,7 +7,7 @@ class mGame4 extends Phaser.Scene {
     {
     	this.score = data.score;
 	    this.nVie = data.nVie;
-	    this.level = data.level;
+	    this.level = data.level;	
     }
 
 	preload() {

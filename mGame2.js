@@ -77,10 +77,6 @@ class mGame2 extends Phaser.Scene {
 
 		    this.pauseButton.on('pointerdown', () => {
 		    	this.gameTimer.paused = true;
-		    	this.ballLeft
-				    .setFriction(0)
-				    .setVelocityX(0)
-				    .setAngularVelocity(0);
 		    	this.player.destroy()
 		    	this.resumeButton.setVisible(true);
 				this.quitButton.setVisible(true);

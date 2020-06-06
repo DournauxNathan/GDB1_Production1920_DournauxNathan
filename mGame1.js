@@ -50,7 +50,6 @@ class mGame1 extends Phaser.Scene {
 		    {
 		    	this.barindicatorY -= 10;
 		    }
-	    	
 	    }, this);
 
 	    //Exemple de constructors : Boutons
