@@ -132,8 +132,7 @@ class mGame1 extends Phaser.Scene {
 		    		this.scene.start("main");
 		    	});
 		    });  
-    
-
+	    
 	}
 
 	update() {
@@ -151,6 +150,7 @@ class mGame1 extends Phaser.Scene {
 			this.level++;
         	this.nVie--;
             this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level});
+
         }
 		
 	}
