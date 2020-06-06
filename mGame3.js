@@ -45,7 +45,7 @@ class mGame3 extends Phaser.Scene {
 	            loop: true
 	        });
 	        this.gameTimer.paused = false;
-    	
+   
 	    //Exemple de constructors : Objets et Tweens
 	    	/*function Targets(sprite, x, y, state,here)
 		    {
@@ -80,33 +80,33 @@ class mGame3 extends Phaser.Scene {
 	    this.targetB = this.matter.add.image(1400,200,"flies").setStatic(true);
 	    this.targetC = this.matter.add.image(1100,550,"flies").setStatic(true);
 
-	    
-	    this.tweenA = this.tweens.add({
-	        targets: this.targetA,
-	        y: 200,
-	        duration: this.speedTargets,
-	        ease: 'Linear',
-	        loop: -1,
-	        yoyo: true
-	    });
+	    //Tagets' Animations
+		    this.tweenA = this.tweens.add({
+		        targets: this.targetA,
+		        y: 200,
+		        duration: this.speedTargets,
+		        ease: 'Linear',
+		        loop: -1,
+		        yoyo: true
+		    });
 
-	    this.tweenB = this.tweens.add({
-	        targets: [ this.targetB ],
-	        x: 1100,
-	        duration: this.speedTargets,
-	        ease: 'Linear',
-	        loop: -1,
-	        yoyo: true
-	    });
+		    this.tweenB = this.tweens.add({
+		        targets: [ this.targetB ],
+		        x: 1100,
+		        duration: this.speedTargets,
+		        ease: 'Linear',
+		        loop: -1,
+		        yoyo: true
+		    });
 
-	    this.tweenC = this.tweens.add({
-	        targets: [ this.targetC ],
-	        x: 1400,
-	        duration: this.speedTargets,
-	        ease: 'Linear',
-	        loop: -1,
-	        yoyo: true
-	    });
+		    this.tweenC = this.tweens.add({
+		        targets: [ this.targetC ],
+		        x: 1400,
+		        duration: this.speedTargets,
+		        ease: 'Linear',
+		        loop: -1,
+		        yoyo: true
+		    });
 
 	    this.collectTargetA = function(targetA)
         {
@@ -124,10 +124,8 @@ class mGame3 extends Phaser.Scene {
               
         }
 
-       
-
         this.body1 = this.matter.add.sprite(250, 550,'tongue').setOnCollideWith(this.targetA, this.collectTargetA).setOnCollideWith(this.targetB, this.collectTargetB).setOnCollideWith(this.targetC, this.collectTargetC); 
-		this.matter.add.mouseSpring();
+		this.player = this.matter.add.mouseSpring();
 		this.body2 = this.matter.add.rectangle(250, 550, 30, 30, { isStatic: true });
 	    this.body3 = this.matter.add.rectangle(250, 650, -200, 800, { isStatic: true });
 	    this.body4 = this.matter.add.rectangle(250, 700, 500, 200, { isStatic: true });
@@ -136,7 +134,39 @@ class mGame3 extends Phaser.Scene {
         this.body3.render.visible = false;
         this.body4.render.visible = false;
 
-	    this.spring = this.matter.add.spring(this.body1, this.body2, 140, 0.001);  	    
+	    this.spring = this.matter.add.spring(this.body1, this.body2, 140, 0.001);  	  
+
+	    //Mettre en pause le jeu - 2 issues : Continue(retour au jeu) & Quitter(retour au menu principal)
+		    this.pauseButton = this.add.sprite(1230,80, 'pausedButton').setInteractive();
+		    this.resumeButton = this.add.sprite(440,360, 'resumeButton').setInteractive().setVisible(false);
+		    this.quitButton = this.add.sprite(740,360, 'quitButton').setInteractive().setVisible(false);
+
+		    this.pauseButton.on('pointerdown', () => {
+		    	this.gameTimer.paused = true;
+		    	this.tweenA.pause();
+		    	this.tweenB.pause();
+		    	this.tweenC.pause();
+		    	this.player.destroy()
+
+		    	this.resumeButton.setVisible(true);
+				this.quitButton.setVisible(true);
+		    });
+		    this.resumeButton.on('pointerdown', () => {
+		    	this.gameTimer.paused = false;
+		    	this.player = this.matter.add.mouseSpring();
+		    	this.tweenA.resume();
+		    	this.tweenB.resume();
+		    	this.tweenC.resume();
+		    	this.resumeButton.setVisible(false);
+				this.quitButton.setVisible(false);
+		    });
+		    this.quitButton.on('pointerdown', () => {
+		    	this.gameTimer.paused = true;
+		    	this.time.delayedCall(3000, () => {
+		    		this.cameras.main.fade(0x000000, 1);
+		    		this.scene.start("main");
+		    	});
+		    });  
 	}
 
 	update() {

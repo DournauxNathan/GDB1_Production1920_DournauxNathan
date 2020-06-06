@@ -9,7 +9,7 @@ var config = {
         debug: true
       }
   },
-  scene: [load, Transition, mGame1, mGame2, mGame3]
+  scene: [load, Transition, paused, mGame1, mGame2, mGame3]
 };
 
 var game = new Phaser.Game(config);
