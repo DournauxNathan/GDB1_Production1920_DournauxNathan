@@ -132,8 +132,7 @@ class mGame1 extends Phaser.Scene {
 		    		this.scene.start("main");
 		    	});
 		    });  
-		    }, this);
-	    }
+	    
 	}
 
 	update() {
