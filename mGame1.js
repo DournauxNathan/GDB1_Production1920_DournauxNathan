@@ -50,7 +50,6 @@ class mGame1 extends Phaser.Scene {
 		    {
 		    	this.barindicatorY -= 10;
 		    }
-	    	
 	    }, this);
 
 	    //Exemple de constructors : Boutons
@@ -133,9 +132,8 @@ class mGame1 extends Phaser.Scene {
 		    		this.scene.start("main");
 		    	});
 		    });  
-    
-
-
+		    }, this);
+	    }
 	}
 
 	update() {
@@ -153,6 +151,7 @@ class mGame1 extends Phaser.Scene {
 			this.level++;
         	this.nVie--;
             this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level});
+
         }
 		
 	}

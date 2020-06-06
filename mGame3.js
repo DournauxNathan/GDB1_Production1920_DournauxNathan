@@ -45,7 +45,7 @@ class mGame3 extends Phaser.Scene {
 	            loop: true
 	        });
 	        this.gameTimer.paused = false;
-   
+
 	    //Exemple de constructors : Objets et Tweens
 	    	/*function Targets(sprite, x, y, state,here)
 		    {
@@ -126,6 +126,21 @@ class mGame3 extends Phaser.Scene {
 
         this.body1 = this.matter.add.sprite(250, 550,'tongue').setOnCollideWith(this.targetA, this.collectTargetA).setOnCollideWith(this.targetB, this.collectTargetB).setOnCollideWith(this.targetC, this.collectTargetC); 
 		this.player = this.matter.add.mouseSpring();
+
+        {
+        	targetB.destroy();
+        }
+
+        this.collectTargetC = function(targetC)
+        {
+            targetC.destroy(); 
+              
+        }
+
+       
+
+        this.body1 = this.matter.add.sprite(250, 550,'tongue').setOnCollideWith(this.targetA, this.collectTargetA).setOnCollideWith(this.targetB, this.collectTargetB).setOnCollideWith(this.targetC, this.collectTargetC); 
+
 		this.body2 = this.matter.add.rectangle(250, 550, 30, 30, { isStatic: true });
 	    this.body3 = this.matter.add.rectangle(250, 650, -200, 800, { isStatic: true });
 	    this.body4 = this.matter.add.rectangle(250, 700, 500, 200, { isStatic: true });
@@ -133,6 +148,7 @@ class mGame3 extends Phaser.Scene {
 
         this.body3.render.visible = false;
         this.body4.render.visible = false;
+
 
 	    this.spring = this.matter.add.spring(this.body1, this.body2, 140, 0.001);  	  
 
@@ -167,6 +183,9 @@ class mGame3 extends Phaser.Scene {
 		    		this.scene.start("main");
 		    	});
 		    });  
+
+	    this.spring = this.matter.add.spring(this.body1, this.body2, 140, 0.001);  	    
+
 	}
 
 	update() {
