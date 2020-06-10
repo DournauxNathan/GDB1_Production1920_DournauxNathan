@@ -11,9 +11,6 @@ class mGame1 extends Phaser.Scene {
     }
 
 	preload() {
-        this.load.image("timebar", "Proto/timer.png");
-        this.load.image("bar", "Proto/bar.png");
-        this.load.image("barindicator", "Proto/blue.png");
 	}
 
 	create() {

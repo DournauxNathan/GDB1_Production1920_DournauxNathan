@@ -11,6 +11,33 @@ class load extends Phaser.Scene {
     }
 
 	preload() {
+		this.load.image("title", "Assets/mainTitle.png");
+		this.load.image("transition", "Assets/transition.png");
+    	this.load.image("playButton", "Assets/playButton.png");
+    	this.load.image("quitButton", "Assets/quitButton.png");
+
+
+        this.load.image("timebar", "Proto/timer.png");
+
+    	this.load.image("background1", "Assets/background1.png");
+    	this.load.image("barindicator", "Assets/barIndicator.png");
+		this.load.image("bar", "Assets/bar.png");
+
+		this.load.image("background2", "Assets/background2.png");
+        this.load.image("ball", "Proto/blue.png");
+        this.load.image("platform", "Proto/platform.png");
+        this.load.image("trigger", "Proto/trigger.png");
+
+
+        this.load.image("background3", "Assets/background3.png");
+        this.load.image("flies", "Proto/red.png");
+
+        this.load.image("tongue", "Proto/blue.png");
+
+        this.load.image("pausedButton", "Assets/pauseButton.png");
+
+        this.load.image("tongue", "Proto/blue.png");
+        this.load.image("tongue", "Proto/blue.png");
 
 	}
 
