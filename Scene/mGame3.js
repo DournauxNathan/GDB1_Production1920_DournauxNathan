@@ -99,6 +99,12 @@ class mGame3 extends Phaser.Scene {
 		    this.targetB = new Targets("flies", 1400, 200, "true", this);
 		    this.targetC = new Targets("flies", 1100, 550, "true", this);
 
+
+
+		   	this.targetA = new Targets("flies", 850, 550, "true", this);
+		    this.targetB = new Targets("flies", 1400, 200, "true", this);
+		    this.targetC = new Targets("flies", 1100, 550, "true", this);
+
 			new Tweens("this.targetA", "y", 200, 500, "true",this);
 		    new Tweens("this.targetB", "x", 1100, 500, "true",this);
 		    new Tweens("this.targetC", "x", 1400, 500, "true",this);
@@ -108,11 +114,23 @@ class mGame3 extends Phaser.Scene {
 		    this.nTargets = 3;
 		    this.speedTargets = 5000;
 
-		    this.targetA = this.matter.add.image(850,550,"flies").setStatic(true);
-		    this.targetB = this.matter.add.image(1400,200,"flies").setStatic(true);
-		    this.targetC = this.matter.add.image(1100,550,"flies").setStatic(true);
+
+		    this.targetA = this.matter.add.sprite(850,550,"flies").setStatic(true);
+		    this.targetB = this.matter.add.sprite(1400,200,"flies").setStatic(true);
+		    this.targetC = this.matter.add.sprite(1100,550,"flies").setStatic(true);
 
 		    //Tagets' Animations
+		    	this.anims.create({
+					key:'flyAnim',
+					frames: this.anims.generateFrameNumbers('flies', {rupeet: 0, end: 3}),
+					frameRate: 18,
+					repeat: -1
+				});
+
+				/*this.targetA.play('flyAnim', true);
+				this.targetB.play('flyAnim', true);
+				this.targetC.play('flyAnim', true);*/
+
 			    this.tweenA = this.tweens.add({
 			        targets: this.targetA,
 			        y: 200,
@@ -120,7 +138,8 @@ class mGame3 extends Phaser.Scene {
 			        ease: 'Linear',
 			        loop: -1,
 			        yoyo: true
-			    });
+			    });   
+
 
 			    this.tweenB = this.tweens.add({
 			        targets: [ this.targetB ],
@@ -174,5 +193,35 @@ class mGame3 extends Phaser.Scene {
 	}
 
 	update() {
+		/*if(this.targetA.y >= 200)
+	    {
+	    	this.targetA.setFlipX(true);
+	    }
+
+	    if(this.targetA.y <= 550)
+	    {
+	    	this.targetA.setFlipX(true);
+	    }
+
+	    if(this.targetB.x >= 1100)
+	    {
+	    	this.targetB.setFlipX(true);
+	    }
+
+	    if(this.targetB.x <= 1400)
+	    {
+	    	this.targetB.setFlipX(false);
+	    }
+
+	    if(this.targetB.x >= 1400)
+	    {
+	    	this.targetC.setFlipX(true);
+	    }
+
+	    if(this.targetB.x <= 1100)
+	    {
+	    	this.targetC.setFlipX(true);
+	    }	*/	
+
 	}
 }

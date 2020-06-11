@@ -14,7 +14,10 @@ class mGame1 extends Phaser.Scene {
 	}
 
 	create() {
-		this.add.image(0, 0, 'background1').setOrigin(0,0);
+<<<<<<< Polish
+		this.add.image(0, 0, 'background1-a').setOrigin(0,0).setVisible(true);
+		this.add.image(0, 0, 'background1-b').setOrigin(0,0).setVisible(false);
+
 		this.add.sprite(1150, 125, "bar").setOrigin(0,0).setScale();
 
 		//Timer
@@ -132,7 +135,6 @@ class mGame1 extends Phaser.Scene {
 		    	if(this.gameTimer.paused == false)
 			    {
 			    	this.barindicator.y -= 10;
-			    	console.log(this.barindicator.y);
 			    }
 		    }, this);
 	}
@@ -141,10 +143,23 @@ class mGame1 extends Phaser.Scene {
 		//Win condition
 			if(this.barindicator.y <= 100 && this.timeLeft != 0)
 			{
+				this.gameTimer.paused = true;
+				this.add.image(0, 0, 'background1-a').setOrigin(0,0).setVisible(false);
+				this.add.image(0, 0, 'background1-b').setOrigin(0,0).setVisible(true);
+
+				this.timedEvent = this.time.delayedCall(2000, callGame, [], this);
+
+				function callGame()
+				{
+					this.level++;
+					this.score++;
+	 
+					this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level});
+				}
+
 				this.level++;
 				this.gameTimer.paused = true;
 				this.score++;
-				this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level});
 			}
 
 		//Fail Condition

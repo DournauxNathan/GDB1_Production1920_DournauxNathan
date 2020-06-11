@@ -2,11 +2,12 @@ var config = {
   type: Phaser.AUTO,
   width: 1280,
   height:  720,
+  backgroundColor: "#fff",
   physics: {
     default: 'matter',
       matter: {
         gravity: { y: 1 },
-        debug: true
+        debug: false
       }
   },
   scene: [ load,main, Transition, paused, mGame1, mGame2, mGame3]
