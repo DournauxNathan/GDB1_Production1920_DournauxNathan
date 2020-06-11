@@ -7,7 +7,7 @@ var config = {
     default: 'matter',
       matter: {
         gravity: { y: 1 },
-        debug: false
+        debug: true
       }
   },
   scene: [ load,main, Transition, paused, mGame1, mGame2, mGame3]
