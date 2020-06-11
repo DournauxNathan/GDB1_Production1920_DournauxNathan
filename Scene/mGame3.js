@@ -99,6 +99,12 @@ class mGame3 extends Phaser.Scene {
 		    this.targetB = new Targets("flies", 1400, 200, "true", this);
 		    this.targetC = new Targets("flies", 1100, 550, "true", this);
 
+
+
+		   	this.targetA = new Targets("flies", 850, 550, "true", this);
+		    this.targetB = new Targets("flies", 1400, 200, "true", this);
+		    this.targetC = new Targets("flies", 1100, 550, "true", this);
+
 			new Tweens("this.targetA", "y", 200, 500, "true",this);
 		    new Tweens("this.targetB", "x", 1100, 500, "true",this);
 		    new Tweens("this.targetC", "x", 1400, 500, "true",this);
@@ -107,6 +113,7 @@ class mGame3 extends Phaser.Scene {
 		//Object - Target
 		    this.nTargets = 3;
 		    this.speedTargets = 5000;
+
 
 		    this.targetA = this.matter.add.sprite(850,550,"flies").setStatic(true);
 		    this.targetB = this.matter.add.sprite(1400,200,"flies").setStatic(true);
@@ -132,6 +139,7 @@ class mGame3 extends Phaser.Scene {
 			        loop: -1,
 			        yoyo: true
 			    });   
+
 
 			    this.tweenB = this.tweens.add({
 			        targets: [ this.targetB ],
@@ -214,5 +222,6 @@ class mGame3 extends Phaser.Scene {
 	    {
 	    	this.targetC.setFlipX(true);
 	    }	*/	
+
 	}
 }

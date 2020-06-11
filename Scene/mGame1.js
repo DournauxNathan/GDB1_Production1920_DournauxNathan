@@ -14,8 +14,10 @@ class mGame1 extends Phaser.Scene {
 	}
 
 	create() {
+<<<<<<< Polish
 		this.add.image(0, 0, 'background1-a').setOrigin(0,0).setVisible(true);
 		this.add.image(0, 0, 'background1-b').setOrigin(0,0).setVisible(false);
+
 		this.add.sprite(1150, 125, "bar").setOrigin(0,0).setScale();
 
 		//Timer
@@ -154,6 +156,10 @@ class mGame1 extends Phaser.Scene {
 	 
 					this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level});
 				}
+
+				this.level++;
+				this.gameTimer.paused = true;
+				this.score++;
 			}
 
 		//Fail Condition

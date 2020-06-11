@@ -59,6 +59,7 @@ class main extends Phaser.Scene {
 	      function callGame()
 	      {
 	          this.scene.start('game3', {nVie: this.nVie, score: this.score, level: this.level});
+
 	          console.log("Vies :" + this.nVie);
 	          console.log("Score :" + this.score);
 	          console.log("Niveau :" + this.level);

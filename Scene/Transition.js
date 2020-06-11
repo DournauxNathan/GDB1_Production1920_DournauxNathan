@@ -30,7 +30,7 @@ class Transition extends Phaser.Scene {
 			console.log("Vies :" + this.nVie);
 			console.log("Score :" + this.score);
 			console.log("Niveau :" + this.level);
-			
+
 			if(this.level == 4)	
 			{
 				this.scene.start('main', {nVie: this.nVie, score: this.score, level: this.level});
