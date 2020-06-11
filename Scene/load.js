@@ -17,7 +17,8 @@ class load extends Phaser.Scene {
     	this.load.image("quitButton", "Assets/quitButton.png");
 
 
-        this.load.image("timebar", "Proto/timer.png");
+        this.load.image("timebar", "Assets/timer.png");
+        this.load.image("vie", "Assets/health.png");
 
     	this.load.image("background1-a", "Assets/background1-A.png");
     	this.load.image("background1-b", "Assets/background1-B.png");
@@ -25,20 +26,19 @@ class load extends Phaser.Scene {
 		this.load.image("bar", "Assets/bar.png");
 
 		this.load.image("background2", "Assets/background2.png");
-        this.load.image("ball", "Proto/blue.png");
-        this.load.image("platform", "Proto/platform.png");
-        this.load.image("trigger", "Proto/trigger.png");
+        this.load.image("ball", "Assets/blue.png");
+        this.load.image("platform", "Assets/platform.png");
 
 
         this.load.image("background3", "Assets/background3.png");
         this.load.spritesheet("flies", "Assets/fly.png", {frameWidth: 60, frameHeight: 44});
 
-        this.load.image("tongue", "Proto/blue.png");
+        this.load.image("tongue", "Assets/blue.png");
 
         this.load.image("pausedButton", "Assets/pauseButton.png");
 
-        this.load.image("tongue", "Proto/blue.png");
-        this.load.image("tongue", "Proto/blue.png");
+        this.load.image("tongue", "Assets/blue.png");
+        this.load.image("tongue", "Assets/blue.png");
 
 	}
 
