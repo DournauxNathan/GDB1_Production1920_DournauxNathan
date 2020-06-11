@@ -11,7 +11,6 @@ class paused extends Phaser.Scene {
     }
 
 	preload() {
-        
 	}
 
 	create() {	

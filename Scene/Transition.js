@@ -11,10 +11,11 @@ class Transition extends Phaser.Scene {
     }
 
 	preload() {
-        
 	}
 
 	create() {	
+		this.add.image(0, 0, 'transition').setOrigin(0,0);
+
 		this.scoreText = this.add.text(640, 300, ' ', { fontSize: '35px', fill: '#fff' });
 		this.scoreText.setText('' + this.score);
 
@@ -28,8 +29,16 @@ class Transition extends Phaser.Scene {
 		{
 			console.log("Vies :" + this.nVie);
 			console.log("Score :" + this.score);
-			console.log("Niveau :" + this.level);	
-			this.scene.start('game'+ this.level, {nVie: this.nVie, score: this.score, level: this.level});
+			console.log("Niveau :" + this.level);
+			
+			if(this.level == 4)	
+			{
+				this.scene.start('main', {nVie: this.nVie, score: this.score, level: this.level});
+			}
+			else
+			{
+				this.scene.start('game'+ this.level, {nVie: this.nVie, score: this.score, level: this.level});
+			}
 		}
 		
 	}

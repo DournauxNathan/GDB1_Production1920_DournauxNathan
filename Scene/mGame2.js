@@ -14,6 +14,9 @@ class mGame2 extends Phaser.Scene {
 	}
 
 	create() {
+
+		this.add.image(0, 0, 'background2').setOrigin(0,0);
+
 		//Timer
 			let gameOptions = { initialTime: 600 }
 			this.timeLeft = gameOptions.initialTime;
@@ -43,30 +46,7 @@ class mGame2 extends Phaser.Scene {
 	        });
 	        this.gameTimer.paused = false;
 
-	    function Platforms(sprite, x, y,state, angle, here)
-	    {
-	    	this._platform = here.matter.	add.image(x,y,sprite, null).setStatic(state).setAngle(angle);
-	    }
-
-	    this.ballLeft = this.matter.add.image(150, 250, "ball")
-	    	.setCircle(50)
-		    .setFriction(0)
-		    .setVelocityX(1)
-		    .setAngularVelocity(0);
-		    
-  		this.ballRight = this.matter.add.image(1000, 250, "ball")
-	    	.setCircle(50)
-		    .setFriction(0)
-		    .setVelocityX(1)
-		    .setAngularVelocity(0);
-
-	    this.platformsLeft = new Platforms("platform", 250, 450, "true", 8, this);
-  		this.platformsRight = new Platforms("platform", 1000, 450, "true", -8, this);
-  		this.platforms = new Platforms("platform", 640, 750, "true", 0, this);	    
-
-  		this.player = this.matter.add.mouseSpring();
-
-  		//Mettre en pause le jeu - 2 issues : Continue(retour au jeu) & Quitter(retour au menu principal)
+	    //Mettre en pause le jeu - 2 issues : Continue(retour au jeu) & Quitter(retour au menu principal)
 		    this.pauseButton = this.add.sprite(1230,80, 'pausedButton').setInteractive();
 		    this.resumeButton = this.add.sprite(440,360, 'resumeButton').setInteractive().setVisible(false);
 		    this.quitButton = this.add.sprite(740,360, 'quitButton').setInteractive().setVisible(false);
@@ -90,17 +70,40 @@ class mGame2 extends Phaser.Scene {
 		    		this.scene.start("main");
 		    	});
 		    });  
+
+	    //Contructors : Platforms [Working]
+		    function Platforms(sprite, x, y,state, angle, here)
+		    {
+		    	this._platform = here.matter.add.image(x,y,sprite, null).setStatic(state).setAngle(angle).setScale(1.5,1).setVisible(false);
+		    }
+
+		    this.platformsLeft = new Platforms("platform", 300, 385, "true", 30, this);
+	  		this.platformsRight = new Platforms("platform", 1000, 385, "true", -35, this);
+	  		this.platforms = new Platforms("platform", 640, 750, "true", 0, this);	    
+
+	    //Object - interaction with the player 
+		    this.ballLeft = this.matter.add.image(150, 200, "ball")
+		    	.setCircle(50)
+			    .setFriction(10)
+			    .setVelocityX(0)
+			    .setAngularVelocity(0);
+			    
+	  		this.ballRight = this.matter.add.image(1000, 250, "ball")
+		    	.setCircle(50)
+			    .setFriction(10)
+			    .setVelocityX(1)
+			    .setAngularVelocity(0);
+
+	  		this.player = this.matter.add.mouseSpring();
 	}
 
 	update() {
-
-		if(this.ballLeft.y >= 650 || this.ballRight.y >= 650)
-		{
-			this.level++;
-        	this.nVie--;
-            this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level})
-
-		}
-
+		//Fail condition
+			if(this.ballLeft.y >= 650 || this.ballRight.y >= 650)
+			{
+				this.level++;
+	        	this.nVie--;
+	            this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level})
+			}
 	}
 }
