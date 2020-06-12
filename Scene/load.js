@@ -31,15 +31,15 @@ class load extends Phaser.Scene {
 		this.load.image("bar", "Assets/bar.png");
 
 		this.load.image("background2", "Assets/background2.png");
-        this.load.image("ball", "Assets/fly.png");
+        this.load.image("ball", "Assets/Beetle.png");
         this.load.image("platform", "Assets/platform.png");
 
 
         this.load.image("background3", "Assets/background3.png");
         this.load.spritesheet("flies", "Assets/fly.png", {frameWidth: 60, frameHeight: 44});
 
-        this.load.spritesheet("chameleon", "Assets/chameleon.png", {frameWidth: 1400, frameHeight: 1050});
-        this.load.image("tongue", "Assets/blue.png");
+        this.load.image("chameleon", "Assets/chameleon.png");
+        //this.load.image("tongue", "Assets/.png");
 
         this.load.image("pausedButton", "Assets/pauseButton.png");
 

@@ -159,6 +159,7 @@
 
 		//Fail Condition
 			if(this.timeLeft == 0){
+				this.gameTimer.paused = true;
 	        	this.timedEvent = this.time.delayedCall(2000, callGame, [], this);
 
 	        	function callGame()
