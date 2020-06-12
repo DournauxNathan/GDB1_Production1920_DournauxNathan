@@ -37,7 +37,7 @@ class Transition extends Phaser.Scene {
 			}
 			else
 			{
-				this.scene.start('game'+ this.level, {nVie: this.nVie, score: this.score, level: this.level});
+				this.scene.start('goal', {nVie: this.nVie, score: this.score, level: this.level});
 			}
 		}
 		
