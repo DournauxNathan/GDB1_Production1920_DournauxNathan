@@ -35,10 +35,16 @@ class mGame2 extends Phaser.Scene {
 	                let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
 	                this.energyMask.x -= stepWidth;
 	                if(this.timeLeft == 0){
-	                	this.level++;
-						this.gameTimer.paused = true;
-						this.score++;
-						this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level});
+	                	this.gameTimer.paused = true;
+						this.timedEvent = this.time.delayedCall(2000, callGame, [], this);
+
+			        	function callGame()
+						{
+							this.level++;
+			        		this.score++;
+
+							this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level});
+						}
 	                }
 	            },
 	            callbackScope: this,
@@ -101,9 +107,17 @@ class mGame2 extends Phaser.Scene {
 		//Fail condition
 			if(this.ballLeft.y >= 650 || this.ballRight.y >= 650)
 			{
-				this.level++;
-	        	this.nVie--;
-	            this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level})
+	            this.gameTimer.paused = true;
+
+	            this.timedEvent = this.time.delayedCall(1500, callGame, [], this);
+
+				function callGame()
+				{
+					this.level++;
+	        		this.nVie--;
+	 
+					this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level});
+				}
 			}
 	}
 }

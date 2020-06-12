@@ -35,9 +35,16 @@ class mGame3 extends Phaser.Scene {
 	                let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
 	                this.energyMask.x -= stepWidth;
 	                if(this.timeLeft == 0){
-	                	this.level++;
-			        	this.nVie--;
-			            this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level})
+	                	
+			            this.timedEvent = this.time.delayedCall(2000, callGame, [], this);
+
+			            function callGame()
+						{
+							this.level = Phaser.Math.Between(1,3);
+			        		this.nVie--;
+			 
+							this.scene.start("main", {nVie: this.nVie, score: this.score, level: this.level});
+						}
 	                }
 	            },
 	            callbackScope: this,
@@ -174,7 +181,9 @@ class mGame3 extends Phaser.Scene {
 	            targetC.destroy(); 
 	        }
 
-		this.block = this.matter.add.image(400, 50, 'block', null, { ignoreGravity: true });
+	       
+
+		this.block = this.matter.add.image(400, 50, 'chameleon', null, { ignoreGravity: true });
 	    this.block.setFixedRotation();
 	    this.block.body.allowGravity = false;
 
@@ -197,6 +206,7 @@ class mGame3 extends Phaser.Scene {
 	update() {
 		this.block.x = 400;
 		this.block.y = 50;
+
 		/*if(this.targetA.y >= 200)
 	    {
 	    	this.targetA.setFlipX(true);

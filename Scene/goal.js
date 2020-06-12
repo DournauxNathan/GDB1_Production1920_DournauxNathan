@@ -15,9 +15,9 @@ class goal extends Phaser.Scene {
 
 	create() {	
 		
-		this.goal1 = this.add.image(440,250,'screengoal1').setVisible(false);
+		this.goal1 = this.add.image(0,0,'screengoal1').setVisible(false).setOrigin(0,0);
 		this.goal2 = this.add.image(640,250,'screengoal2').setVisible(false);
-		this.goal3 = this.add.image(840,250,'screengoal3').setVisible(false);
+		this.goal3 = this.add.image(640,250,'screengoal3').setVisible(false);
 
 		this.timedEvent = this.time.delayedCall(3000, callGame, [], this);
 

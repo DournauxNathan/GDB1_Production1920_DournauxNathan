@@ -159,9 +159,15 @@
 
 		//Fail Condition
 			if(this.timeLeft == 0){
-				this.level++;
-	        	this.nVie--;
-	            this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level});
+	        	this.timedEvent = this.time.delayedCall(2000, callGame, [], this);
+
+	        	function callGame()
+				{
+					this.level++;
+	        		this.nVie--;
+
+					this.scene.start("issue", {nVie: this.nVie, score: this.score, level: this.level});
+				}
 	        }
 	}
 }
