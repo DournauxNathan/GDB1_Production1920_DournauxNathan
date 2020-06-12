@@ -6,7 +6,7 @@ var config = {
   physics: {
     default: 'matter',
       matter: {
-        debug: true
+        debug: false
       }
   },
   scene: [ load,main, Transition, paused, goal, mGame1, mGame2, mGame3]
