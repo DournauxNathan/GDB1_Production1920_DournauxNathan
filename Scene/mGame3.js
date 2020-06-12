@@ -181,20 +181,19 @@ class mGame3 extends Phaser.Scene {
 	            targetC.destroy(); 
 	        }
 
-	       
-
-		this.block = this.matter.add.image(400, 50, 'chameleon', null, { ignoreGravity: true });
+	    this.block2 = this.add.sprite(325,450,'chameleon').setScale(0.3);
+		this.block = this.matter.add.sprite(0, 0, '', null, { ignoreGravity: true });
 	    this.block.setFixedRotation();
 	    this.block.body.allowGravity = false;
 
 	    var y = 150;
 	    var prev = this.block;
 
-	    for (var i = 0; i < 5; i++)
+	    for (var i = 0; i < 2; i++)
 	    {
 	        var ball = this.matter.add.image(400, y, '', null, { shape: 'circle', mass: 0.1 }).setOnCollideWith(this.targetA, this.collectTargetA).setOnCollideWith(this.targetB, this.collectTargetB).setOnCollideWith(this.targetC, this.collectTargetC);
 
-	        this.matter.add.joint(prev, ball, (i === 0) ? 90 : 35, 0.4);
+	        this.matter.add.joint(prev, ball, (i === 0) ? 90 : 35, 0.02);
 
 	        prev = ball;
 
@@ -204,8 +203,8 @@ class mGame3 extends Phaser.Scene {
 	}
 
 	update() {
-		this.block.x = 400;
-		this.block.y = 50;
+		this.block.x = 475;
+		this.block.y = 400;
 
 		/*if(this.targetA.y >= 200)
 	    {
