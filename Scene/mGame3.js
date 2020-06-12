@@ -172,27 +172,31 @@ class mGame3 extends Phaser.Scene {
 	        this.collectTargetC = function(targetC)
 	        {
 	            targetC.destroy(); 
-	              
 	        }
 
-	    //Object - Interaction with the player
-	        this.body1 = this.matter.add.sprite(250, 550,'tongue').setOnCollideWith(this.targetA, this.collectTargetA).setOnCollideWith(this.targetB, this.collectTargetB).setOnCollideWith(this.targetC, this.collectTargetC); 
-	        this.player = this.matter.add.mouseSpring();
+		this.block = this.matter.add.image(400, 50, 'block', null, { ignoreGravity: true });
+	    this.block.setFixedRotation();
+	    this.block.body.allowGravity = false;
 
-        //Object - Walls
-			this.body2 = this.matter.add.rectangle(250, 550, 30, 30, { isStatic: true });
-		    this.body3 = this.matter.add.rectangle(250, 650, -200, 800, { isStatic: true });
-		    this.body4 = this.matter.add.rectangle(250, 700, 500, 200, { isStatic: true });
-	        this.matter.add.spring(this.body1, this.body2, 100, 0.001);
+	    var y = 150;
+	    var prev = this.block;
 
-	        this.body3.render.visible = false;
-	        this.body4.render.visible = false;
+	    for (var i = 0; i < 5; i++)
+	    {
+	        var ball = this.matter.add.image(400, y, '', null, { shape: 'circle', mass: 0.1 }).setOnCollideWith(this.targetA, this.collectTargetA).setOnCollideWith(this.targetB, this.collectTargetB).setOnCollideWith(this.targetC, this.collectTargetC);
 
-	    //Object - Springs
-	    	this.spring = this.matter.add.spring(this.body1, this.body2, 140, 0.001); 
+	        this.matter.add.joint(prev, ball, (i === 0) ? 90 : 35, 0.4);
+
+	        prev = ball;
+
+	        y += 18;
+	    }
+	    this.matter.add.mouseSpring();
 	}
 
 	update() {
+		this.block.x = 400;
+		this.block.y = 50;
 		/*if(this.targetA.y >= 200)
 	    {
 	    	this.targetA.setFlipX(true);
