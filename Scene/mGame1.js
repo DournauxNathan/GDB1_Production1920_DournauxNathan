@@ -1,4 +1,4 @@
-class mGame1 extends Phaser.Scene {
+	class mGame1 extends Phaser.Scene {
     constructor() {
         super("game1");
     }
@@ -133,7 +133,7 @@ class mGame1 extends Phaser.Scene {
 		    {	
 		    	if(this.gameTimer.paused == false)
 			    {
-			    	this.barindicator.y -= 10;
+			    	this.barindicator.y -= 30;
 			    }
 		    }, this);
 	}
