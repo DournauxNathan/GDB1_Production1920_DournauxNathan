@@ -80,7 +80,7 @@ class mGame2 extends Phaser.Scene {
 	    //Contructors : Platforms [Working]
 		    function Platforms(sprite, x, y,state, angle, here)
 		    {
-		    	this._platform = here.matter.add.image(x,y,sprite, null).setStatic(state).setFriction(0.001).setAngle(angle).setScale(1.5,1).setVisible(false);
+		    	this._platform = here.matter.add.image(x,y,sprite, null).setStatic(state).setFriction(1).setAngle(angle).setScale(1.5,1).setVisible(false);
 		    }
 
 		    this.platformsLeft = new Platforms("platform", 300, 385, "true", 30, this);

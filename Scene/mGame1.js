@@ -133,7 +133,7 @@
 		    {	
 		    	if(this.gameTimer.paused == false)
 			    {
-			    	this.barindicator.y -= 30;
+			    	this.barindicator.y -= 50;
 			    }
 		    }, this);
 	}
