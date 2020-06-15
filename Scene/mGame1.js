@@ -14,9 +14,10 @@
 	}
 
 	create() {
-		this.add.image(0, 0, 'background1-a').setOrigin(0,0).setVisible(true);
-		this.add.image(0, 0, 'background1-b').setOrigin(0,0).setVisible(false);
-
+		this.add.image(0, 0, 'background1-a').setOrigin(0,0);
+		this.oA = this.add.image(700, 485, 'ostrishA').setVisible(true).setScale(0.2);
+		this.oB =this.add.image(700, 380, 'ostrishB').setVisible(false).setScale(0.2);
+		this.add.sprite(620, 535, "dirt").setOrigin(0,0).setScale();
 		this.add.sprite(1150, 125, "bar").setOrigin(0,0).setScale();
 
 		//Timer
@@ -143,8 +144,8 @@
 			if(this.barindicator.y <= 100 && this.timeLeft != 0)
 			{
 				this.gameTimer.paused = true;
-				this.add.image(0, 0, 'background1-a').setOrigin(0,0).setVisible(false);
-				this.add.image(0, 0, 'background1-b').setOrigin(0,0).setVisible(true);
+				this.oA.setVisible(false);
+				this.oB.setVisible(true);
 
 				this.timedEvent = this.time.delayedCall(2000, callGame, [], this);
 
