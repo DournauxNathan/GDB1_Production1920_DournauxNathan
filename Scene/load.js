@@ -26,7 +26,9 @@ class load extends Phaser.Scene {
         this.load.image("screengoal3", "Assets/ObjectiveScreen3.png");
 
     	this.load.image("background1-a", "Assets/background1-A.png");
-    	this.load.image("background1-b", "Assets/background1-B.png");
+        this.load.image("dirt", "Assets/dirt.png");
+    	this.load.image("ostrishA", "Assets/OstrichA.png");
+        this.load.image("ostrishB", "Assets/OstrichB.png");
     	this.load.image("barindicator", "Assets/barIndicator.png");
 		this.load.image("bar", "Assets/bar.png");
 
@@ -36,7 +38,7 @@ class load extends Phaser.Scene {
 
 
         this.load.image("background3", "Assets/background3.png");
-        this.load.spritesheet("flies", "Assets/fly.png", {frameWidth: 60, frameHeight: 44});
+        this.load.spritesheet("flies", "Assets/Fly.png", {frameWidth: 60, frameHeight: 44});
 
         this.load.image("chameleon", "Assets/chameleon.png");
         //this.load.image("tongue", "Assets/.png");
