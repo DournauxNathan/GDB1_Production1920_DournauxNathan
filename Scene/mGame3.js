@@ -183,28 +183,28 @@ class mGame3 extends Phaser.Scene {
 
 	    this.block2 = this.add.sprite(325,450,'chameleon').setScale(0.3);
 		this.block = this.matter.add.sprite(0, 0, '', null, { ignoreGravity: true });
-	    this.block.setFixedRotation();
+	    this.block.setVisible(false).setFixedRotation();
 	    this.block.body.allowGravity = false;
 
-	    var y = 150;
+	    var y = 200;
 	    var prev = this.block;
 
-	    for (var i = 0; i < 2; i++)
+	    for (var i = 0; i < 3; i++)
 	    {
-	        var ball = this.matter.add.image(400, y, '', null, { shape: 'circle', mass: 0.1 }).setOnCollideWith(this.targetA, this.collectTargetA).setOnCollideWith(this.targetB, this.collectTargetB).setOnCollideWith(this.targetC, this.collectTargetC);
-
-	        this.matter.add.joint(prev, ball, (i === 0) ? 90 : 35, 0.02);
+	        var ball = this.matter.add.image(520, y, 'tongue', null, { shape: 'circle', mass: 0.1 }).setOnCollideWith(this.targetA, this.collectTargetA).setOnCollideWith(this.targetB, this.collectTargetB).setOnCollideWith(this.targetC, this.collectTargetC);
+	        //ball.setGravityX(0.5);
+	        this.matter.add.joint(prev, ball, (i === 0) ? 25 : 30, 0.4);
 
 	        prev = ball;
 
-	        y += 18;
+	        y += 50;
 	    }
 	    this.matter.add.mouseSpring();
 	}
 
 	update() {
-		this.block.x = 475;
-		this.block.y = 400;
+		this.block.x = 520;
+		this.block.y = 360;
 
 		/*if(this.targetA.y >= 200)
 	    {
