@@ -73,7 +73,6 @@ class mGame4 extends Phaser.Scene {
     	{
     		this.target.destroy();
     		console.log("Yay")
-
     	}
 
 		}
@@ -96,13 +95,7 @@ class mGame4 extends Phaser.Scene {
 			{
 				console.log("Yay")
 			}
-		}
-
-		
-
-
-
-				
+		}		
 
 	}
 }
