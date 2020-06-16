@@ -54,8 +54,8 @@ class mGame3 extends Phaser.Scene {
 
         //Mettre en pause le jeu - 2 issues : Continue(retour au jeu) & Quitter(retour au menu principal)
 		    this.pauseButton = this.add.sprite(1230,80, 'pausedButton').setInteractive();
-		    this.resumeButton = this.add.sprite(440,360, 'resumeButton').setInteractive().setVisible(false);
-		    this.quitButton = this.add.sprite(740,360, 'quitButton').setInteractive().setVisible(false);
+		    this.resumeButton = this.add.sprite(340,360, 'resumeButton').setInteractive().setVisible(false);
+		    this.quitButton = this.add.sprite(840,360, 'quitButton').setInteractive().setVisible(false);
 
 		    this.pauseButton.on('pointerdown', () => {
 		    	this.gameTimer.paused = true;
@@ -78,8 +78,7 @@ class mGame3 extends Phaser.Scene {
 		    });
 		    this.quitButton.on('pointerdown', () => {
 		    	this.gameTimer.paused = true;
-		    	this.time.delayedCall(3000, () => {
-		    		this.cameras.main.fade(0x000000, 1);
+		    	this.time.delayedCall(1500, () => {
 		    		this.scene.start("main");
 		    	});
 		    });  
@@ -166,9 +165,9 @@ class mGame3 extends Phaser.Scene {
 			        yoyo: true
 			    });
 
-		    this.collectTargetA = function(targetA)
+		    this.collectTargetA = function(targetA, here)
 	        {
-	            targetA.destroy(true);	
+	            targetA.destroy(true);
 	        }
 
 	        this.collectTargetB = function(targetB)
@@ -206,35 +205,36 @@ class mGame3 extends Phaser.Scene {
 		this.block.x = 520;
 		this.block.y = 360;
 
-		/*if(this.targetA.y >= 200)
-	    {
-	    	this.targetA.setFlipX(true);
-	    }
+		
+			if(this.targetA.y >= 200)
+		    {
+		    	this.targetA.setFlipX(true);
+		    }
 
-	    if(this.targetA.y <= 550)
-	    {
-	    	this.targetA.setFlipX(true);
-	    }
+		    if(this.targetA.y <= 550)
+		    {
+		    	this.targetA.setFlipX(true);
+		    }
 
-	    if(this.targetB.x >= 1100)
-	    {
-	    	this.targetB.setFlipX(true);
-	    }
+		    if(this.targetB.x >= 1100)
+		    {
+		    	this.targetB.setFlipX(true);
+		    }
 
-	    if(this.targetB.x <= 1400)
-	    {
-	    	this.targetB.setFlipX(false);
-	    }
+		    if(this.targetB.x <= 1400)
+		    {
+		    	this.targetB.setFlipX(false);
+		    }
 
-	    if(this.targetB.x >= 1400)
-	    {
-	    	this.targetC.setFlipX(true);
-	    }
+		    if(this.targetB.x >= 1400)
+		    {
+		    	this.targetC.setFlipX(true);
+		    }
 
-	    if(this.targetB.x <= 1100)
-	    {
-	    	this.targetC.setFlipX(true);
-	    }	*/	
+		    if(this.targetB.x <= 1100)
+		    {
+		    	this.targetC.setFlipX(true);
+		    }		
 
 	}
 }

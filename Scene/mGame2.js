@@ -54,8 +54,8 @@ class mGame2 extends Phaser.Scene {
 
 	    //Mettre en pause le jeu - 2 issues : Continue(retour au jeu) & Quitter(retour au menu principal)
 		    this.pauseButton = this.add.sprite(1230,80, 'pausedButton').setInteractive();
-		    this.resumeButton = this.add.sprite(440,360, 'resumeButton').setInteractive().setVisible(false);
-		    this.quitButton = this.add.sprite(740,360, 'quitButton').setInteractive().setVisible(false);
+		    this.resumeButton = this.add.sprite(340,360, 'resumeButton').setInteractive().setVisible(false);
+		    this.quitButton = this.add.sprite(840,360, 'quitButton').setInteractive().setVisible(false);
 
 		    this.pauseButton.on('pointerdown', () => {
 		    	this.gameTimer.paused = true;
@@ -71,8 +71,7 @@ class mGame2 extends Phaser.Scene {
 		    });
 		    this.quitButton.on('pointerdown', () => {
 		    	this.gameTimer.paused = true;
-		    	this.time.delayedCall(3000, () => {
-		    		this.cameras.main.fade(0x000000, 1);
+		    	this.time.delayedCall(1500, () => {
 		    		this.scene.start("main");
 		    	});
 		    });  
