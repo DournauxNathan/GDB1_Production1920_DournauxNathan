@@ -16,7 +16,7 @@ class Transition extends Phaser.Scene {
 	create() {	
 		this.add.image(0, 0, 'transition').setOrigin(0,0);
 
-		this.scoreText = this.add.text(640, 400, ' ', { fontSize: '35px', fill: '#fff' });
+		this.scoreText = this.add.text(640, 400, ' ', { fontSize: '48px Arial Black', fill: '#000' });
 		this.scoreText.setText('' + this.score);
 
 		this.vie1 = this.add.image(440,250,'vie').setVisible(true);

@@ -15,6 +15,7 @@ class load extends Phaser.Scene {
 		this.load.image("transition", "Assets/transition.png");
     	this.load.image("playButton", "Assets/playButton.png");
     	this.load.image("quitButton", "Assets/quitButton.png");
+    	this.load.image("resumeButton", "Assets/resumeButton.png");
 
 
         this.load.image("timebar", "Assets/timer.png");
