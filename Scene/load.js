@@ -41,7 +41,7 @@ class load extends Phaser.Scene {
         this.load.spritesheet("flies", "Assets/Fly.png", {frameWidth: 60, frameHeight: 44});
 
         this.load.image("chameleon", "Assets/chameleon.png");
-        //this.load.image("tongue", "Assets/.png");
+        this.load.image("tongue", "Assets/tongue.png");
 
         this.load.image("pausedButton", "Assets/pauseButton.png");
 
